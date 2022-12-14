@@ -19,8 +19,17 @@ public class UsuarioService {
 		return this.userRepository.save(user);
 	}
 	
+	public void delete(Integer id) {
+		this.userRepository.deleteById(id);
+	}
+	
 	public Optional<Usuario> findByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
+	
+	public Optional<Usuario> findById(Integer id) {
+        return this.userRepository.findById(id);
+    }
+	
 	
 }
