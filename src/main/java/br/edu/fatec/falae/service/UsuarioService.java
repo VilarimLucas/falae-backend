@@ -30,6 +30,11 @@ public class UsuarioService {
 	public Optional<Usuario> findById(Integer id) {
         return this.userRepository.findById(id);
     }
+
+	public Optional<Usuario> authenticate(String email, String password) {
+		Optional<Usuario> user = this.userRepository.findByEmail(email);
+		return (user.isPresent() && user.get().getPassword().equals(password)) ? user : Optional.empty();
+	}
 	
 	
 }

@@ -1,5 +1,7 @@
 package br.edu.fatec.falae.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,20 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> create(@RequestBody Usuario user){
 		Usuario created = userService.save(user);
 		return ResponseEntity.ok(created);
+	}
+	
+	
+	@PostMapping("/auth")
+	public ResponseEntity<Usuario> auth(@RequestBody Usuario user) {
+		String email = user.getEmail();
+		String password = user.getPassword();
+		
+		Optional<Usuario> usuario = userService.authenticate(email, password);
+		if (usuario.isPresent()) {
+			return ResponseEntity.ok(usuario.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@GetMapping("/{id}")
