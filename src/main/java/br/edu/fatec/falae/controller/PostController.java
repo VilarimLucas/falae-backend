@@ -39,13 +39,13 @@ public class PostController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Post> get(@PathVariable("id") Integer id){
+	public ResponseEntity<Post> recuperate(@PathVariable("id") Integer id){
 		Post created =postService.findById(id).get();
 		return ResponseEntity.ok(created);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Post> recuperate(@RequestBody Map<String, String> post){
+	public ResponseEntity<Post> update(@RequestBody Map<String, String> post){
 		Post created=new Post();
 		created.setId(Integer.parseInt(post.get("id")));
 		created.setUser(userService.findById(Integer.parseInt(post.get("user_id"))).get());

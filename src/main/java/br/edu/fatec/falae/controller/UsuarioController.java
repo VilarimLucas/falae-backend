@@ -46,13 +46,13 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> get(@PathVariable("id") Integer id){
+	public ResponseEntity<Usuario> recuperate(@PathVariable("id") Integer id){
 		Usuario created = userService.findById(id).get();
 		return ResponseEntity.ok(created);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Usuario> recuperate(@RequestBody Usuario user){
+	public ResponseEntity<Usuario> update(@RequestBody Usuario user){
 		Usuario created = userService.save(user);
 		return ResponseEntity.ok(created);
 	}
