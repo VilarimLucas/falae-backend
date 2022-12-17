@@ -48,11 +48,6 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> get(@PathVariable("id") Integer id){
 		Usuario created = userService.findById(id).get();
-		
-		if(userService.findById(id).isPresent()) {
-			created = userService.findById(id).get();
-		}
-		
 		return ResponseEntity.ok(created);
 	}
 	
@@ -68,6 +63,7 @@ public class UsuarioController {
 		if(userService.findById(id).isPresent()) {
 			userService.delete(id);
 		}
+		
 		return ResponseEntity.ok(null);
 	}
 	

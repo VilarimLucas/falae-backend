@@ -24,7 +24,12 @@ public class UsuarioService {
 	}
 	
 	public Optional<Usuario> findByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+		try {
+			return this.userRepository.findByEmail(email);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return null;
     }
 	
 	public Optional<Usuario> findById(Integer id) {

@@ -1,5 +1,6 @@
 package br.edu.fatec.falae.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class PostService {
 	public Optional<Post> findById(Integer id) {
         return this.postRepository.findById(id);
     }
-
+	
+	public List<Post> findByUser(Usuario user) {
+		return postRepository.findByUser(user);
+	}
+	public List<Post> findAll(){
+		return this.postRepository.findAll();	
+		}
 }

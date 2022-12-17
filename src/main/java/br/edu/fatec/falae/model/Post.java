@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -18,7 +19,19 @@ public class Post {
 	private String comment;
 	
 	@ManyToOne
+	@JoinColumn(name="user_id")
 	private Usuario user;
+
+	public Post() {
+		
+	}
+	
+	public Post(Integer id, String comment, Usuario user) {
+		super();
+		this.id = id;
+		this.comment = comment;
+		this.user = user;
+	}
 	
 	public Usuario getUser() {
 		return user;
@@ -27,17 +40,6 @@ public class Post {
 	public void setUser(Usuario user) {
 		this.user = user;
 	}
-
-	public Post() {
-		
-	}
-	
-	public Post(Integer id, String comment) {
-		super();
-		this.id = id;
-		this.comment = comment;
-	}
-	
 	
 	public Integer getId() {
 		return id;
